@@ -1,17 +1,15 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const mongoose = require('mongoose')
+const sql = require('../models/user.js')
 const keys = require('../config/keys.js')
 
-const User = mongoose.model('users')
-
-passport.serializeUser((user, done) => {
-    done(null, user.id);
+passport.serializeUser((result, done) => {
+    done(null, result[0].googleID);
 })
 
 passport.deserializeUser((id, done) => {
-    User.findById(id).then(user => {
-        done(null,user);
+    sql.view(id).then((result) => {
+        done(null, result)
     })
 })
 
@@ -23,13 +21,22 @@ passport.use(
     callbackURL: '/auth/google/callback',
     proxy: true
     },
-    async (accessToken, refreshToken, profile, done) => {
-        const existingUser = await User.findOne({googleId: profile.id});
-        if (existingUser) {
-        return done(null,existingUser);
-        }
-        const user = await new User({googleId: profile.id}).save();
-        done(null, user);
+    (accessToken, refreshToken, profile, done) => {
+        console.log(profile.id)
+        console.log(profile.displayName)
+        console.log(profile.emails[0].value)
+        sql.view(profile.id).then((result) => {
+            if (result.length < 1) {
+                sql.insert(profile.id).then((result) => {
+                    console.log('Added Record');
+                }).then(
+                    sql.view(profile.id).then((result) => {done(null, result)})
+                );
+            }
+            else {
+                done(null, result)
+            }
+        })
     }  
     // (accessToken, refreshToken, profile, done) => {
     //    User.findOne({googleId: profile.id}).then((existingUser) => {
