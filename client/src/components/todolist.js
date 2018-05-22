@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 
 class Todolist extends Component {
-    render(){
-        return(
+   
+    render() {
+        return (
             <div>
-                To do List Component
+<p>To do list yo </p>
+
             </div>
-        )
+        );
     }
 }
 export default Todolist;
