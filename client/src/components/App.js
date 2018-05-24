@@ -1,11 +1,12 @@
 // import logo from './logo.svg';
 import './App.css';
+
 import React,  {Component} from 'react';
 // import ReactDOM from 'react-dom';
 // import { Provider} from 'react-redux';
 // import { createStore, applyMiddleware } from 'redux';
 import { Route, Link, Switch } from 'react-router-dom';
-import Todolist from './todolist';
+import Todolist from './Todolist2';
 import Login from './login';
 // const title = () => (
 //   <div>
@@ -40,7 +41,7 @@ const List = () => (
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="Page">
         <h1> To Do List: Get Your Shit Done! </h1>
         <nav className="navbar navbar-light">
           <ul className="nav navbar-nav">
