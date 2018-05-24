@@ -29,17 +29,22 @@ class Landing extends Component {
 
     handleSubmit(event) {
       alert('A task was submitted: ' + this.state.value);
-      event.preventDefault();
+      axios.post('/api/list/item', {
+        item: this.state.value
+      }).then(() => {
+        axios.get('api/list').then(
+          result => {
+            this.setState({tasks: [...result.data]}, ()=>{
+              event.preventDefault();
+            })
+          }
+        )
+      })
+      //event.preventDefault();
     }
 
-
-
-    handleClick() {
-      console.log('click')
-    }
-
-    insertToDo() {
-
+    handleClick(e) {
+      console.log(e.target.value);
     }
 
      render() {
@@ -49,7 +54,7 @@ class Landing extends Component {
               Welcome to Blacklist
            </h2>
            <p>
-             Below are your task.
+             Below you can create your task.
            </p>  
            <form onSubmit={this.handleSubmit}>
            <label>
@@ -60,7 +65,7 @@ class Landing extends Component {
           </form>
              { this.state.tasks &&
                 this.state.tasks.map(task => {
-                  return <p onClick={this.handleClick.bind(this)} key={task.id}>{task.id} {task.task}</p>
+                  return <p key={task.id}>{task.id} {task.task} <button value={task.id} onClick={this.handleClick.bind(this)}>Complete Task</button></p>
                 })
              }
          </div>  

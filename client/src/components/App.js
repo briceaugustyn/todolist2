@@ -6,6 +6,10 @@ import Home from './Homepage';
 import Landing from './Landing';
 //import Footer from './Footer';
 
+// const test = () => {
+//   return <p>Test</p>
+// }
+
 class App extends Component {
 
   render() {
@@ -17,6 +21,7 @@ class App extends Component {
             <div>
               <Route exact path="/" component={Home} /> 
               <Route exact path="/dashboard" component={Landing} /> 
+              {/* <Route exact path="/dashboard" component={test} />  */}
             </div>
           </BrowserRouter>
         </div>

@@ -2,10 +2,14 @@ const express = require('express');
 const cookieSession = require('cookie-session');
 const passport = require('passport')
 var keys = require('./config/keys.js');
+var bodyParser = require('body-parser') 
 require('./models/user.js')
 require('./services/passport.js');
 
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use (
     cookieSession ({
