@@ -18,6 +18,7 @@ app.use(passport.initialize());
 app.use(passport.session());  
 
 require('./routes/authRoutes.js')(app);
+require('./routes/listRoutes.js')(app);
 
 app.get('/', (req,res) => {
     res.send({hi: 'there'})

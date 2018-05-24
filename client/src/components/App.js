@@ -14,31 +14,8 @@ import Login from './login';
 //   </div>
 // );
 
-// const list = () => (<p> this is where a list component would go </p>);
-
-const index = () => (
-<main>
-  <Switch>
-    <Route exact path='/' component={Home}/>
-    <Route path='/todolist' component={Todolist}/>
-    <div> {List} </div>
-
-  </Switch>
-</main>
-)
-
-const Home = (props) => (
-<h2> To Do 2: The home component {console.log(props)} </h2> 
-)
-
-const List = () => (
-  <h2> insert todo list component here </h2> 
-)
-
-// const login = () => (
-// {Login}
-// )
 class App extends Component {
+
   render() {
     return (
       <div className="Page">
