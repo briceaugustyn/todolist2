@@ -12,6 +12,3 @@ CREATE TABLE users (
     PRIMARY KEY(id)
 );
 
-
-INSERT INTO users (googleID) 
-VALUES (117865259629170227600);
