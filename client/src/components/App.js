@@ -6,6 +6,7 @@ import React,  {Component} from 'react';
 // import { createStore, applyMiddleware } from 'redux';
 import { Route, Link, Switch } from 'react-router-dom';
 import Todolist from './todolist';
+import ButtonStrap from './button';
 import Login from './login';
 // const title = () => (
 //   <div>
@@ -46,6 +47,7 @@ class App extends Component {
           <ul className="nav navbar-nav">
             <li><Link to="/">Home</Link></li>
             <li><Link to="/list">Todo List</Link></li>
+            <li><Link to="/button">Button</Link></li>
             <li><Link to="/login">Log In</Link></li>
           </ul>
         </nav>
@@ -53,6 +55,7 @@ class App extends Component {
       <Switch>
       <Route exact path='/' component={index} />
       <Route path ="/list" component={Todolist} />
+      <Route path ="/button" component={ButtonStrap} />
       <Route path ="/login" component={Login} />
       </Switch>
        </div>
