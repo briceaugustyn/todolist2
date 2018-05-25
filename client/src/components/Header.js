@@ -31,7 +31,7 @@ class Header extends Component {
                 case true:
                 return <li><a href="/api/logout">Logout</a></li>
                 default:
-                return 'Home'
+                return 'Home '
             }
        }
 
