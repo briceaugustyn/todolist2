@@ -14,27 +14,27 @@ import Login from './login';
 //   </div>
 // );
 
+// const test = () => {
+//   return <p>Test</p>
+// }
+
 class App extends Component {
 
   render() {
     return (
-      <div className="Page">
-        <h1> To Do List: Get Your Shit Done! </h1>
-        <nav className="navbar navbar-light">
-          <ul className="nav navbar-nav">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/list">Todo List</Link></li>
-            <li><Link to="/login">Log In</Link></li>
-          </ul>
-        </nav>
-
-      <Switch>
-      <Route exact path='/' component={index} />
-      <Route path ="/list" component={Todolist} />
-      <Route path ="/login" component={Login} />
-      </Switch>
-       </div>
-    );
+      <div>
+        <div className = "container">
+          <Header />
+          <BrowserRouter>
+            <div>
+              <Route exact path="/" component={Home} /> 
+              <Route exact path="/dashboard" component={Landing} /> 
+              {/* <Route exact path="/dashboard" component={test} />  */}
+            </div>
+          </BrowserRouter>
+        </div>
+      </div>
+    )
   }
 }
 
