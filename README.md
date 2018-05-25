@@ -14,12 +14,14 @@
 
 8 copy schema from vss file
 
-9 paste schema in terminal
+9 paste schema.sql in terminal
 
-10 enter
+10 Enter
 
-8 copy schema1 from vss file
+8 copy schema2.sql from vss file
 
-9 paste schema in terminal
+9 paste schema content in terminal
 
-10 npm run dev
+10 Enter
+
+11 npm run dev
