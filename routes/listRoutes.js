@@ -19,4 +19,12 @@ app.post('/api/list/item', (req,res) => {
     res.end()
 })
 
+app.put('/api/list/complete', (req,res) => {
+    console.log(req.body)
+    var number = parseInt(req.body.taskId)
+    list.updateOne(true, number).then(result => {
+        console.log(result)
+    })
+    res.end()
+})
 }

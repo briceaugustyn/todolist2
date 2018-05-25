@@ -24,9 +24,9 @@ module.exports ={
     updateOne: function(valOfState,valOfId) {
         return new Promise ((resolve,reject) => {
         var queryString = 'UPDATE list SET complete = (?) WHERE id = (?);'
-        pool.query(queryString,[valOfState,valOfId], function (error, results) {
+        connect.query(queryString,[valOfState,valOfId], function (error, results) {
         if (error) {reject(error) } else{
-        resolve(`Inserted ${valOfState} & ${valOfId} into burgers.`)
+        resolve(results)
         }
         })
         })
