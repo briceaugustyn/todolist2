@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS todolist_db;
+// DROP DATABASE IF EXISTS todolist_db;
 
-CREATE DATABASE todolist_db
-	DEFAULT CHARACTER SET utf8
-	DEFAULT COLLATE utf8_general_ci;
+// CREATE DATABASE todolist_db
+//	DEFAULT CHARACTER SET utf8
+//	DEFAULT COLLATE utf8_general_ci;
 
 USE todolist_db;
 
@@ -13,5 +13,3 @@ CREATE TABLE users (
 );
 
 
-INSERT INTO users (googleID) 
-VALUES (117865259629170227600);
