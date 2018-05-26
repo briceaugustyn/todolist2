@@ -7,7 +7,8 @@ const About = () => {
                 <div className="col s12 m6">
                     <h3>Blacklist ToDo List</h3>
                     <p>
-                    This is a ToDo List application developed by the Blacklist Team for Project 2. 
+                    This is a ToDo List application developed 
+                    by the Blacklist Team for Project 2. 
                     </p>
                 </div>
             </div>
