@@ -13,16 +13,22 @@ app.get('/api/list', (req, res) => {
 app.post('/api/list/item', (req,res) => {
     console.log(typeof req.body.item)
     console.log(typeof req.user[0].id)
-    list.insert(req.body.item,req.user[0].id).then (result => {
+    console.log(req.body.item)
+    if (req.body.item === '') {
+        res.end()
+    } else {
+    list.insert(req.body.item,req.body.name,req.user[0].id).then (result => {
         console.log(result)
     })
     res.end()
+}
 })
 
 app.put('/api/list/complete', (req,res) => {
-    console.log(req.body)
+    //console.log(req.body)
     var number = parseInt(req.body.taskId)
-    list.updateOne(true, number).then(result => {
+    var task = req.body.taskName
+    list.updateOne(true, number,task).then(result => {
         console.log(result)
     })
     res.end()

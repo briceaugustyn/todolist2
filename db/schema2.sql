@@ -5,6 +5,7 @@ CREATE TABLE list (
    user_id INTEGER(30),
    task VARCHAR(100),
    complete BOOLEAN NOT NULL DEFAULT 0,
+   task_group VARCHAR(100),
    PRIMARY KEY(id),
    FOREIGN KEY (user_id) REFERENCES users(id) 
 );

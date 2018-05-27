@@ -8,17 +8,21 @@ class Landing extends Component {
     this.state = {tasks: null};
     this.state = {value: ''};
     this.state = {complete: ''};
+    this.state = {name: ''};
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleChange2 = this.handleChange2.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    
   }
 
   componentDidMount() {
       axios.get('api/list').then(
         (result) => {
-          this.setState({tasks: [...result.data].filter((element) => {return element.complete === 0})})
-          this.setState({complete: [...result.data].filter((element) => {return element.complete === 1})})
-          console.log(this.state)
+          this.setState({tasks: [...result.data].filter((element) => {return element.complete === 0 && element.task_group === this.state.name})})
+          this.setState({complete: [...result.data].filter((element) => {return element.complete === 1 && element.task_group === this.state.name})})
+          //console.log(result.data[0].task_group)
+          //console.log(this.state.name)
         }
         )
   }
@@ -28,36 +32,44 @@ class Landing extends Component {
       this.setState({value: event.target.value});
     }
 
+    handleChange2(event) {
+      this.setState({name: event.target.value});
+      //console.log(this.state.name)
+    }
+
     handleSubmit(event) {
-      //alert('A task was submitted: ' + this.state.value);
       axios.post('/api/list/item', {
-        item: this.state.value
+        item: this.state.value,
+        name: this.state.name
       }).then(() => {
         axios.get('api/list').then(
           result => {
-            this.setState({tasks: [...result.data].filter((element) => {return element.complete === 0})})
+            this.setState({tasks: [...result.data].filter((element) => {return element.complete === 0 && element.task_group === this.state.name})})
+            this.setState({complete: [...result.data].filter((element) => {return element.complete === 1 && element.task_group === this.state.name})})
           }
         )
       })
       event.target.value = ''
+      //event.target.name = ''
       this.setState({value: event.target.value});
+      //this.setState({name: event.target.name});
     }
 
     handleClick(e) {
       var id = e.target.value
       axios.put('/api/list/complete',{
-        taskId: id
+        taskId: id,
+        taskName: this.state.name
       }).then((result) => {
         console.log(result)
         axios.get('api/list').then(
           (result) => {
-            this.setState({complete: [...result.data].filter((element) => {return element.complete === 1})})
-            this.setState({tasks: [...result.data].filter((element) => {return element.complete === 0})})
-            console.log(this.state.complete)
+            this.setState({complete: [...result.data].filter((element) => {return element.complete === 1 && element.task_group === this.state.name})})
+            this.setState({tasks: [...result.data].filter((element) => {return element.complete === 0 && element.task_group === this.state.name})})
+            console.log(result)
           }
         )
       })
-      //console.log(e.target.value);
     }
 
      render() {
@@ -73,6 +85,8 @@ class Landing extends Component {
            <label>
           Task:
           <input type="text" value={this.state.value} onChange={this.handleChange} />
+          Name:
+          <input type="text" value={this.state.name} onChange={this.handleChange2} />
           </label>
           <input type="submit" value="Submit" />
           </form>
