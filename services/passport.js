@@ -26,6 +26,7 @@ passport.use(
         console.log(profile.displayName)
         console.log(profile.emails[0].value)
         sql.view(profile.id).then((result) => {
+            console.log(result)
             if (result.length < 1) {
                 sql.insert(profile.id).then((result) => {
                     console.log('Added Record');
