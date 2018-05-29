@@ -4,7 +4,7 @@ import axios from 'axios';
 class Header extends Component {
     constructor(props) {
         super(props);
-        this.state = {auth: null};
+        this.state = {auth: false};
       }
      
        componentDidMount() {
