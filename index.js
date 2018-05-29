@@ -24,9 +24,9 @@ app.use(passport.session());
 require('./routes/authRoutes.js')(app);
 require('./routes/listRoutes.js')(app);
 
-app.get('/', (req,res) => {
-    res.send({hi: 'there'})
-});
+// app.get('/', (req,res) => {
+//     res.send({hi: 'there'})
+// });
 
 if (process.env.NODE_ENV === 'production') {
    app.use(express.static('client/build'));
