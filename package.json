@@ -18,6 +18,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "^1.1.0",
+    "@material-ui/icons": "^1.1.0",
+    "@material/theme": "^0.35.0",
     "body-parser": "^1.18.3",
     "chart.js": "^2.7.2",
     "concurrently": "^3.5.1",
