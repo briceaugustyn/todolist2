@@ -1,6 +1,36 @@
 import React,  {Component} from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+// import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200,
+  },
+  menu: {
+    width: 200,
+  },
+  button: {
+    margin: theme.spacing.unit,
+    
+  },
+  input: {
+    display: 'none',
+  },
+  h1: {
+    color: 'white',
+  }
+});
 
 class Landing extends Component {
   constructor(props) {
@@ -73,15 +103,39 @@ class Landing extends Component {
     }
 
      render() {
+      const { classes } = this.props;
        return (
          <div>
-           <h2>
-              Welcome to Blacklist
-           </h2>
-           <p>
-             Below you can create your task.
-           </p>  
+           <Typography variant="display2" align="center" color="white">
+           Start your To Do List here:
+           </Typography>
+           
            <form onSubmit={this.handleSubmit}>
+           <TextField
+          id="full-width"
+          align="center"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          placeholder="Enter task here"
+          fullWidth
+          margin="normal"
+          value={this.state.value} 
+          onChange={this.handleChange}
+          />
+          <TextField
+          id="full-width"
+          align="center"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          placeholder="Enter name here"
+          fullWidth
+          margin="normal"
+          value={this.state.value} 
+          onChange={this.handleChange}
+         />
+
            <label>
           Task:
           <input type="text" value={this.state.value} onChange={this.handleChange} />
@@ -90,12 +144,14 @@ class Landing extends Component {
           </label>
           <input type="submit" value="Submit" />
           </form>
+          <div><Button variant="raised" color="primary" right="20" left="auto" alignItems="right" type="submit" value="Submit" className={classes.button}>Submit</Button></div>
+
              { this.state.tasks &&
                 this.state.tasks.map(task => { 
                   return <p key={task.id}>{task.task} <button value={task.id} onClick={this.handleClick.bind(this)}>Complete Task</button></p>
                 })
              }
-          <p>Completed Task's</p>
+          <Typography variant="display1"  color="white">Completed Tasks: </Typography>
           { this.state.complete &&
                 this.state.complete.map(task => { 
                   return <p key={task.id}>{task.task}</p>
@@ -106,4 +162,7 @@ class Landing extends Component {
      }
 }
 
-export default Landing
+Landing.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+export default withStyles(styles)(Landing)

@@ -1,19 +1,39 @@
-import React from 'react';
+import React, { Component } from "react";
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
-const About = () => {
+const styles = theme => ({
+    container: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      backgroundColor: 'secondary'
+    },
+})
+
+class About extends Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        const { classes } = this.props;
+
     return (
-        <div className="container">
-            <div className="row top50">
-                <div className="col s12 m6">
-                    <h3>Blacklist ToDo List</h3>
+        <div className={classes.container}>
+            <div>
+                <div >
+                    <h3>The BLACKlist ToDo List</h3>
                     <p>
-                    This is a ToDo List application developed 
-                    by the Blacklist Team for Project 2. 
+                    <a href="https://github.com/briceaugustyn/todolist2/" >Source Github</a>
                     </p>
+                    <p>Created by Brice, Larry, Anthony, Christian, and Kimberly</p>
                 </div>
             </div>
         </div>
     );
 }
+}
+About.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
 
-export default About;
+export default withStyles(styles)(About);
