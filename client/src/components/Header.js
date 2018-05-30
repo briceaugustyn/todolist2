@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 class Header extends Component {
     constructor(props) {
         super(props);
-        this.state = {auth: null};
+        this.state = {auth: false};
       }
      
        componentDidMount() {
@@ -38,6 +38,7 @@ class Header extends Component {
             }
        }
 
+       
 
    render() {
        return(

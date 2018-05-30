@@ -32,6 +32,11 @@ const styles = theme => ({
   }
 });
 
+
+
+
+
+
 class Landing extends Component {
   constructor(props) {
     super(props);
@@ -43,8 +48,20 @@ class Landing extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleChange2 = this.handleChange2.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+
     
+    this.state = {isToggleOn: true};
+
+    // This binding is necessary to make `this` work in the callback
+    this.handleClick = this.handleClick.bind(this);
+
+
   }
+
+
+  
+
 
   componentDidMount() {
       axios.get('api/list').then(
@@ -86,6 +103,13 @@ class Landing extends Component {
     }
 
     handleClick(e) {
+      console.log("value click")
+      console.log(e)
+      
+      this.setState(prevState => ({
+        isToggleOn: !prevState.isToggleOn
+      }));
+
       var id = e.target.value
       axios.put('/api/list/complete',{
         taskId: id,
@@ -102,9 +126,14 @@ class Landing extends Component {
       })
     }
 
+
+   
+
      render() {
       const { classes } = this.props;
        return (
+         
+         
          <div>
            <Typography variant="display2" align="center" color="white">
            Start your To Do List here:
@@ -138,6 +167,9 @@ class Landing extends Component {
 
            <label>
           Task:
+
+          
+         
           <input type="text" value={this.state.value} onChange={this.handleChange} />
           Name:
           <input type="text" value={this.state.name} onChange={this.handleChange2} />
@@ -152,17 +184,36 @@ class Landing extends Component {
                 })
              }
           <Typography variant="display1"  color="white">Completed Tasks: </Typography>
+     
           { this.state.complete &&
                 this.state.complete.map(task => { 
                   return <p key={task.id}>{task.task}</p>
                 })
              }
+
+             
+          
+
+
+  <button type="button">
+  Complete Task Graph
+  onPress={() => this.props.navigation.navigate('/complete')}
+      </button>
+
          </div>  
        )
      }
 }
 
+
 Landing.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 export default withStyles(styles)(Landing)
+
+
+
+//export default Landing
+
+//             <button type="button">Complete Task Graph</button>
+]
